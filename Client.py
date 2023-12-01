@@ -7,10 +7,9 @@ def tcp_client():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     try:
-    
+        # Connect to server
         client_socket.connect((server_ip, server_port))
         print(f"Connected to server {server_ip}:{server_port}")
-
 
         device_name = input("Enter your device name: ")
         client_socket.send(device_name.encode())
@@ -22,14 +21,14 @@ def tcp_client():
             
             client_socket.send(command.encode())
 
-           
+           # Server response
             response = client_socket.recv(1024).decode()
             print("Server response:", response)
 
     except Exception as e:
         print(f"Error: {e}")
     finally:
-       
+       # connection closed 
         client_socket.close()
 
 if __name__ == "__main__":
