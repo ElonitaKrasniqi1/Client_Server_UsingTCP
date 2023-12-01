@@ -39,10 +39,9 @@ def handle_received_message(message, client_address, client_socket, device_name)
             # Run the command and get the output
             command_output = execute_command(parts[1:])
             client_socket.send(command_output.encode())
-            def read_file(file_name):
+        def read_file(file_name):
                 try:
-                    script_dir =
-                    os.path.dirname(os.path.realpath(__file__))
+                    script_dir = os.path.dirname(os.path.realpath(__file__))
                     file_path = os.path.join(script_dir file_name)
                     with open(file_path, "r") as file:
                         content = file.read()
@@ -52,8 +51,7 @@ def handle_received_message(message, client_address, client_socket, device_name)
 
              def write_file(file_name, content):
                  try:
-                     script_dir = 
-                     os.path.dirname(or.path.realpath(__file__))
+                     script_dir = os.path.dirname(or.path.realpath(__file__))
                      file_path = os.path.join(script_dir, file_name)
                     with open(file_path, "w") as file:
                         file.write(content)
@@ -63,11 +61,16 @@ def handle_received_message(message, client_address, client_socket, device_name)
 
 def execute_command(command_parts):
     try:
-        result = subprocess.run(command_parts, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        script_name = command_parts[0]
+
+        script_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), script_name)
+
+        result = subprocess.run([sys.executable, script_path] + command_parts[1:], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         output = result.stdout if result.returncode == 0 else result.stderr
         return output
     except Exception as e:
-        return f"Error executing command: {e}"
+        return f"Error executing script: {e}"
+
 
 def handle_client(client_socket, address):
     print(f"Accepted connection from {address}")
