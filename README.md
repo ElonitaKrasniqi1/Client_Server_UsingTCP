@@ -1,6 +1,6 @@
 ## Programimi me sockets
 Ky projekt përfshin një server dhe klientet për transferim të file-ve  përmes protokollit TCP. Serveri lejon përdoruesit e autorizuar të kryejnë operacione read(), write() dhe execute() në file, ndërsa klienti lidhet me serverin dhe ka interaksion me të.
-##Server.py
+## Server.py
 Përdorimi
 - Ekzekutoni skriptën 'Server.py' për të startuar serverin.
 - Serveri dëgjon për lidhje nga klientët.
