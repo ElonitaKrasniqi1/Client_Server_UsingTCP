@@ -23,9 +23,11 @@ Përdorimi
 - Do të merrni leje bazuar në emrin e pajisjes suaj.
 - Jepni komandat për të interaktuar me serverin.
 
-
-
-
+### TestExecution.py
+Ky file përmban një shembull skripte që mund të ekzekutohet nga admin user.
+### Test.txt
+Këtu është një textfile që mund të përdoret për operacionet read dhe write.
+TIP - - Sigurohuni që serveri të jetë në ekzekutim para se të lidheni me klientin.
 
 
 Projekti u punua nga Grupi 5:
