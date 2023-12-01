@@ -60,4 +60,52 @@ def handle_received_message(message, client_address, client_socket, device_name)
                         return "File written successfully."
                     except Exception as e:
                  return "Error:{}".format(e)
-                 
+
+def execute_command(command_parts):
+    try:
+        result = subprocess.run(command_parts, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        output = result.stdout if result.returncode == 0 else result.stderr
+        return output
+    except Exception as e:
+        return f"Error executing command: {e}"
+
+def handle_client(client_socket, address):
+    print(f"Accepted connection from {address}")
+
+    try:
+        device_name = client_socket.recv(1024).decode()
+        print(f"Device '{device_name}' connected from {address}")
+
+        while True:
+            data = client_socket.recv(1024).decode()
+            if not data:
+                print(f"Connection closed by {address}")
+                break
+
+            handle_received_message(data, address, client_socket, device_name)
+
+    except Exception as e:
+        print(f"Error handling connection from {address}: {e}")
+
+    finally:
+        client_socket.close()
+        print(f"Connection with {address} closed.")
+
+def tcp_server():
+    server_ip = "127.0.0.1"
+    server_port = 3304
+
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind((server_ip, server_port))
+    server_socket.listen(5)
+
+    print(f"TCP server listening on {server_ip}:{server_port}")
+
+    while True:
+        client_socket, address = server_socket.accept()
+        client_handler = threading.Thread(target=handle_client, args=(client_socket, address))
+        client_handler.start()
+
+if __name__ == "__main__":
+    tcp_server()
+
