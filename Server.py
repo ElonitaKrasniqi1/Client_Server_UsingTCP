@@ -39,3 +39,13 @@ def handle_received_message(message, client_address, client_socket, device_name)
             # Run the command and get the output
             command_output = execute_command(parts[1:])
             client_socket.send(command_output.encode())
+            def read_file(file_name):
+                try:
+                    script_dir =
+                    os.path.dirname(os.path.realpath(__file__))
+                    file_path = os.path.join(script_dir file_name)
+                    with open(file_path, "r") as file:
+                        content = file.read()
+                        return content
+                except FileNotFoundError:
+                    return "File not found."
