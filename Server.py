@@ -49,3 +49,15 @@ def handle_received_message(message, client_address, client_socket, device_name)
                         return content
                 except FileNotFoundError:
                     return "File not found."
+
+             def write_file(file_name, content):
+                 try:
+                     script_dir = 
+                     os.path.dirname(or.path.realpath(__file__))
+                     file_path = os.path.join(script_dir, file_name)
+                    with open(file_path, "w") as file:
+                        file.write(content)
+                        return "File written successfully."
+                    except Exception as e:
+                 return "Error:{}".format(e)
+                 
