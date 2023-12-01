@@ -27,11 +27,11 @@ Përdorimi
 Ky file përmban një shembull skripte që mund të ekzekutohet nga admin user.
 ### Test.txt
 Këtu është një textfile që mund të përdoret për operacionet read dhe write.
-TIP - - Sigurohuni që serveri të jetë në ekzekutim para se të lidheni me klientin.
-
+TIP 
+- Sigurohuni që serveri të jetë në ekzekutim para se të lidheni me klientin.
 
 Projekti u punua nga Grupi 5:
-Elonita Krasniqi
-Elvira Metaj
-Endi Rashica
-Erblin Kelmendi
+Elonita Krasniqi,
+Elvira Metaj,
+Endi Rashica,
+Erblin Kelmendi.
